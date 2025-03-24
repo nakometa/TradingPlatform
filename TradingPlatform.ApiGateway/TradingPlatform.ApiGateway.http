@@ -1,0 +1,6 @@
+@TradingPlatform.ApiGateaway_HostAddress = http://localhost:5063
+
+GET {{TradingPlatform.ApiGateaway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
