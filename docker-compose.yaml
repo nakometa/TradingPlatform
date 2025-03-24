@@ -1,0 +1,87 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_USER: feederuser
+      POSTGRES_PASSWORD: feederpass
+      POSTGRES_DB: pricestore
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672" # RabbitMQ UI
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - backend
+
+  pricefeeder:
+    build:
+      context: .
+      dockerfile: PriceFeeder/Dockerfile
+    container_name: pricefeeder
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      postgres:
+        condition: service_started
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=pricestore;Username=feederuser;Password=feederpass
+      - RabbitMQ__Host=rabbitmq
+    networks:
+      - backend
+
+  orderapi:
+    build:
+      context: .
+      dockerfile: Order.Api/Dockerfile
+    container_name: orderapi
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      postgres:
+        condition: service_started
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=pricestore;Username=feederuser;Password=feederpass
+    ports:
+      - "5004:80"
+    networks:
+      - backend
+
+  portfolioapi:
+    build:
+      context: .
+      dockerfile: Portfolio.Api/Dockerfile
+    container_name: portfolioapi
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      postgres:
+        condition: service_started
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=pricestore;Username=feederuser;Password=feederpass
+    ports:
+      - "5005:80"
+    networks:
+      - backend
+
+volumes:
+  postgres-data:
+
+networks:
+  backend:
