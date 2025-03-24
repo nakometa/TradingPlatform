@@ -80,6 +80,19 @@ services:
     networks:
       - backend
 
+  apigateway:
+    build:
+      context: .
+      dockerfile: TradingPlatform.ApiGateway/Dockerfile
+    container_name: apigateway
+    depends_on:
+      - orderapi
+      - portfolioapi
+    ports:
+      - "5006:8080"
+    networks:
+      - backend
+
 volumes:
   postgres-data:
 

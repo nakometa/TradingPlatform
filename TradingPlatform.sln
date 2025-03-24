@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35514.174 d17.12
+VisualStudioVersion = 17.12.35514.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceFeeder", "PriceFeeder\PriceFeeder.csproj", "{0EB9A937-4D65-4660-9C56-05E91080F0D9}"
 EndProject
@@ -15,6 +15,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Api", "Order.Api\Order.Api.csproj", "{68D154B5-EE8D-4A13-AB97-BFE84436F6DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portfolio.Api", "Portfolio.Api\Portfolio.Api.csproj", "{036D9135-1971-4DB5-A25B-A57660859FCD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingPlatform.ApiGateway", "TradingPlatform.ApiGateway\TradingPlatform.ApiGateway.csproj", "{4C83C557-4506-4EFE-A4D6-3F6034E0413F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{036D9135-1971-4DB5-A25B-A57660859FCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{036D9135-1971-4DB5-A25B-A57660859FCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{036D9135-1971-4DB5-A25B-A57660859FCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C83C557-4506-4EFE-A4D6-3F6034E0413F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C83C557-4506-4EFE-A4D6-3F6034E0413F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C83C557-4506-4EFE-A4D6-3F6034E0413F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C83C557-4506-4EFE-A4D6-3F6034E0413F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
