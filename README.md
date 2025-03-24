@@ -15,7 +15,7 @@ A simple API Gateway for demonstrating microservice architecture.
   "quantity": 2,
   "side": "buy"
 }
-
+```
 ### 2. Get User Portfolio
 
 - **Method:** `GET`
